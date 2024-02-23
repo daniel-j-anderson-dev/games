@@ -3,7 +3,7 @@ use std::ops::{Index, IndexMut};
 use color_eyre::{eyre::eyre, Report};
 use serde::Serialize;
 
-#[derive(Debug, Default, Serialize)]
+#[derive(Debug, Default, Serialize, Clone, Copy)]
 pub struct Board {
     board: [[Cell; 3]; 3],
 }
