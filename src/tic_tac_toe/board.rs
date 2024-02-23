@@ -48,6 +48,16 @@ impl Board {
             _ => (),
         }
         // Check diagonals
+        match [self[CellIndex::TOP_LEFT], self[CellIndex::CENTER], self[CellIndex::BOTTOM_RIGHT]] {
+            [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
+            [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
+            _ => (),
+        }
+        match [self[CellIndex::TOP_RIGHT], self[CellIndex::CENTER], self[CellIndex::BOTTOM_LEFT]] {
+            [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
+            [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
+            _ => (),
+        }
         // TODO:
         unimplemented!();
     }
