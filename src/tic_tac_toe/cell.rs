@@ -1,5 +1,5 @@
 use color_eyre::{Report, eyre::eyre};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 /// This struct granites that the row and column indices are 0, 1, or 2.
 pub struct CellIndex {
@@ -99,7 +99,7 @@ impl CellIndex {
     };
 }
 
-#[derive(Debug, Default, Clone, Copy, Serialize)]
+#[derive(Debug, Default, Clone, Copy, Serialize, Deserialize)]
 pub enum Cell {
     #[default]
     Empty,
