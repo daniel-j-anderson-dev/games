@@ -16,6 +16,21 @@ impl Board {
     }
     pub fn get_winner(&self) -> Option<Winner> {
         // Check columns
+        match [self[CellIndex::TOP_LEFT], self[CellIndex::MIDDLE_LEFT], self[CellIndex::BOTTOM_LEFT]] {
+            [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
+            [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
+            _ => (),
+        };
+        match [self[CellIndex::TOP_MIDDLE], self[CellIndex::CENTER], self[CellIndex::BOTTOM_MIDDLE]] {
+            [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
+            [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
+            _ => (),
+        };
+        match [self[CellIndex::TOP_RIGHT], self[CellIndex::MIDDLE_RIGHT], self[CellIndex::BOTTOM_RIGHT]] {
+            [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
+            [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
+            _ => (),
+        }
         // Check rows
         // Check diagonals
         // TODO:
