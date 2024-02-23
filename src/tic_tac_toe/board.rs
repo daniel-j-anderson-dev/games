@@ -14,11 +14,10 @@ impl Board {
     pub fn get_cell(&self, index: CellIndex) -> Cell {
         return self[index];
     }
-    /// Returns a cell representing the winner
-    /// - [Cell::Empty] means no winner
-    /// - [Cell::X] means `X`s win
-    /// - [Cell::O] means `O`s win
-    pub fn get_winner(&self) -> Cell {
+    pub fn get_winner(&self) -> Option<Winner> {
+        // Check columns
+        // Check rows
+        // Check diagonals
         // TODO:
         unimplemented!();
     }
@@ -57,4 +56,9 @@ impl Index<CellIndex> for Board {
     fn index(&self, i: CellIndex) -> &Self::Output {
         return self.cells.index(i.row()).index(i.column());
     }
+}
+
+pub enum Winner {
+    X,
+    O,
 }
