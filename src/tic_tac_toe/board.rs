@@ -16,6 +16,14 @@ impl Board {
     }
     pub fn get_winner(&self) -> Option<Winner> {
         // Check columns
+        self.check_columns();
+        // Check rows
+        self.check_rows();
+        // Check diagonals
+        self.check_diagonals();
+        return None;
+    }
+    fn check_columns(&self) -> Option<Winner> {
         match [self[CellIndex::TOP_LEFT], self[CellIndex::MIDDLE_LEFT], self[CellIndex::BOTTOM_LEFT]] {
             [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
             [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
@@ -31,7 +39,9 @@ impl Board {
             [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
             _ => (),
         }
-        // Check rows
+        return None;
+    }
+    fn check_rows(&self) -> Option<Winner> {
         match [self[CellIndex::TOP_LEFT], self[CellIndex::TOP_MIDDLE], self[CellIndex::TOP_RIGHT]] {
             [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
             [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
@@ -47,7 +57,9 @@ impl Board {
             [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
             _ => (),
         }
-        // Check diagonals
+        return None;
+    }
+    fn check_diagonals(&self) -> Option<Winner> {
         match [self[CellIndex::TOP_LEFT], self[CellIndex::CENTER], self[CellIndex::BOTTOM_RIGHT]] {
             [Cell::X, Cell::X, Cell::X] => return Some(Winner::X),
             [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
@@ -58,9 +70,9 @@ impl Board {
             [Cell::O, Cell::O, Cell::O] => return Some(Winner::O),
             _ => (),
         }
-        // TODO:
-        unimplemented!();
+        return None;
     }
+
     // convince methods for iterating over every cell on the board
     pub fn iter(&self) -> impl Iterator<Item = Cell> {
         return self.cells.into_iter().flatten();
