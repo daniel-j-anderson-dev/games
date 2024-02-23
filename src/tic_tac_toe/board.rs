@@ -14,6 +14,16 @@ impl Board {
     pub fn get_cell(&self, index: CellIndex) -> Cell {
         return self[index];
     }
+    /// Returns a cell representing the winner
+    /// - [Cell::Empty] means no winner
+    /// - [Cell::X] means `X`s win
+    /// - [Cell::O] means `O`s win
+    pub fn get_winner(&self) -> Cell {
+        // TODO:
+        unimplemented!();
+    }
+
+    // convince methods for iterating over every cell on the board
     pub fn iter(&self) -> impl Iterator<Item = Cell> {
         return self.board.into_iter().flatten();
     }
