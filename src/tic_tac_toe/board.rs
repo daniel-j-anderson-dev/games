@@ -1,11 +1,11 @@
 use std::ops::{Index, IndexMut};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use super::cell::{Cell, CellIndex};
 
-#[derive(Debug, Default, Serialize, Clone, Copy)]
+#[derive(Debug, Default, Serialize, Deserialize, Clone, Copy)]
 pub struct Board {
-    board: [[Cell; 3]; 3],
+    cells: [[Cell; 3]; 3],
 }
 impl Board {
     pub fn set_cell(&mut self, index: CellIndex, value: Cell) {
@@ -22,10 +22,9 @@ impl Board {
         // TODO:
         unimplemented!();
     }
-
     // convince methods for iterating over every cell on the board
     pub fn iter(&self) -> impl Iterator<Item = Cell> {
-        return self.board.into_iter().flatten();
+        return self.cells.into_iter().flatten();
     }
     pub fn iter_enumerated(&self) -> impl Iterator<Item = (CellIndex, Cell)> {
         return self.iter().enumerate().map(|(i, cell)| {
@@ -36,7 +35,7 @@ impl Board {
         })
     }
     pub fn iter_mut(&mut self) -> impl Iterator<Item = &mut Cell> {
-        return self.board.iter_mut().flatten();
+        return self.cells.iter_mut().flatten();
     }
     pub fn iter_mut_enumerated(&mut self) -> impl Iterator<Item = (CellIndex, &mut Cell)> {
         return self.iter_mut().enumerate().map(|(i, cell)| {
@@ -50,12 +49,12 @@ impl Board {
 impl IndexMut<CellIndex> for Board {
     /// Never panics because `i.row()` and `i.column()` are granted valid by [CellIndex]
     fn index_mut(&mut self, i: CellIndex) -> &mut Self::Output {
-        return self.board.index_mut(i.row()).index_mut(i.column());
+        return self.cells.index_mut(i.row()).index_mut(i.column());
     }
 }
 impl Index<CellIndex> for Board {
     type Output = Cell;
     fn index(&self, i: CellIndex) -> &Self::Output {
-        return self.board.index(i.row()).index(i.column());
+        return self.cells.index(i.row()).index(i.column());
     }
 }
