@@ -1,4 +1,4 @@
-use color_eyre::{Report, eyre::eyre};
+use color_eyre::{eyre::eyre, Report};
 use serde::{Deserialize, Serialize};
 
 /// This struct granites that the row and column indices are 0, 1, or 2.
