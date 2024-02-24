@@ -110,3 +110,11 @@ pub enum Cell {
     X,
     O,
 }
+impl Cell {
+    pub fn is_empty(&self) -> bool {
+        return match self {
+            Cell::Empty => true,
+            _ => false,
+        }
+    }
+}
