@@ -2,6 +2,7 @@ use color_eyre::{eyre::eyre, Report};
 use serde::{Deserialize, Serialize};
 
 /// This struct granites that the row and column indices are 0, 1, or 2.
+#[derive(PartialEq, Eq, Default, Clone, Copy, Debug)]
 pub struct CellIndex {
     row_index: usize,
     column_index: usize,
@@ -29,7 +30,9 @@ impl TryFrom<(usize, usize)> for CellIndex {
         return CellIndex::new(value.0, value.1);
     }
 }
+
 impl CellIndex {
+    
     /// This function ensures that `row_index` and `column_index` are in the interval `[0, 2]`
     pub fn new(row_index: usize, column_index: usize) -> Result<CellIndex, Report> {
         if row_index < 3 && column_index < 3 {
@@ -42,6 +45,7 @@ impl CellIndex {
             return Err(error);
         }
     }
+    
     pub fn row(&self) -> usize {
         return self.row_index;
     }
