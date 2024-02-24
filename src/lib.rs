@@ -1,2 +1,1 @@
 pub mod tic_tac_toe;
-pub mod connect_four;
