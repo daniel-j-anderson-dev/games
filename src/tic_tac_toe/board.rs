@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::ops::{Index, IndexMut};
 
-use super::cell::{Cell, CellIndex};
+use super::{cell::{Cell, CellIndex}, Winner};
 
 #[derive(Debug, Default, Serialize, Deserialize, Clone, Copy)]
 pub struct Board {
@@ -151,9 +151,4 @@ impl Index<CellIndex> for Board {
     fn index(&self, i: CellIndex) -> &Self::Output {
         return self.cells.index(i.row()).index(i.column());
     }
-}
-
-pub enum Winner {
-    X,
-    O,
 }

@@ -12,5 +12,11 @@ pub use serde::{Serialize, Deserialize};
 pub struct GameState {
     pub board: Board,
     pub is_x_turn: bool,
-    pub is_over: bool,
+    pub winner: Option<Winner>,
+}
+
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
+pub enum Winner {
+    X,
+    O,
 }
