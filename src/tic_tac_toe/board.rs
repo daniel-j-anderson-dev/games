@@ -6,18 +6,15 @@ use super::cell::{Cell, CellIndex};
 #[derive(Debug, Default, Serialize, Deserialize, Clone, Copy)]
 pub struct Board {
     cells: [[Cell; 3]; 3],
-    is_set: [[bool; 3]; 3],
 }
 impl Board {
     /// Returns true if cell value is set, false otherwise.
     pub fn set_cell(&mut self, index: CellIndex, value: Cell) -> bool {
-        return if !self.is_set[index.row()][index.column()] {
+        if let Cell::Empty = self[index] {
             self[index] = value;
-            self.is_set[index.row()][index.column()] = true;
-            true
-        } else {
-            false
-        };
+            return true;
+        }
+        return false;
     }
     pub fn get_cell(&self, index: CellIndex) -> Cell {
         return self[index];
