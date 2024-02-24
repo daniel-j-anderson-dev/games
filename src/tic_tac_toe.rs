@@ -8,7 +8,7 @@ pub use self::{
 
 pub use serde::{Serialize, Deserialize};
 
-#[derive(Default, Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize, Clone, Copy)]
 pub struct GameState {
     pub board: Board,
     pub is_x_turn: bool,
