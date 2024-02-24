@@ -2,7 +2,7 @@ use color_eyre::{eyre::eyre, Report};
 use serde::{Deserialize, Serialize};
 
 /// This struct granites that the row and column indices are 0, 1, or 2.
-#[derive(PartialEq, Eq, Default, Clone, Copy, Debug)]
+#[derive(PartialEq, Eq, Default, Clone, Copy, Debug, Serialize, Deserialize)]
 pub struct CellIndex {
     row_index: usize,
     column_index: usize,
