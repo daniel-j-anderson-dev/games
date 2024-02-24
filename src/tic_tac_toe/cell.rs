@@ -103,7 +103,7 @@ impl CellIndex {
     };
 }
 
-#[derive(Debug, Default, Clone, Copy, Serialize, Deserialize)]
+#[derive(Debug, Default, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
 pub enum Cell {
     #[default]
     Empty,
