@@ -14,4 +14,3 @@ pub struct GameState {
     pub is_x_turn: bool,
     pub is_over: bool,
 }
-
